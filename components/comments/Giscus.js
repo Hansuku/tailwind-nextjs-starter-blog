@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 
 const Giscus = ({ mapping }) => {
   const [enableLoadComments, setEnabledLoadComments] = useState(true)
+  const [firstInit, setFirstInit] = useState(true)
   const { theme, resolvedTheme } = useTheme()
   const commentsTheme =
     siteMetadata.comment.giscusConfig.themeURL === ''
@@ -42,13 +43,13 @@ const Giscus = ({ mapping }) => {
   // Reload on theme change
   useEffect(() => {
     const iframe = document.querySelector('iframe.giscus-frame')
-    if (!iframe) return
+    if (!iframe && !firstInit) return
+    setFirstInit(false)
     LoadComments()
-  }, [LoadComments])
-
+  }, [LoadComments, firstInit])
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
-      {enableLoadComments && <button onClick={LoadComments}>Load Comments</button>}
+      {enableLoadComments && <button onClick={LoadComments}>加载评论</button>}
       <div className="giscus" id={COMMENTS_ID} />
     </div>
   )

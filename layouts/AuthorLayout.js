@@ -1,6 +1,7 @@
 import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import { PageSEO } from '@/components/SEO'
+import { useTheme } from 'next-themes'
 
 export default function AuthorLayout({ children, frontMatter }) {
   const {
@@ -15,6 +16,9 @@ export default function AuthorLayout({ children, frontMatter }) {
     linkedin,
     github,
   } = frontMatter
+  const { theme, resolvedTheme } = useTheme()
+
+  const isDark = theme === 'dark' || resolvedTheme === 'dark'
 
   return (
     <>
@@ -45,7 +49,9 @@ export default function AuthorLayout({ children, frontMatter }) {
             </div> */}
           </div>
           <div className="pt-8 pb-3 prose dark:prose-dark max-w-none xl:col-span-2">{children}</div>
-          <img src={tagBlack} className="w-full" alt="tag" />
+          <div className="w-full">
+            <Image src={isDark ? tagWhite : tagBlack} width="720" height="650" alt="tag" />
+          </div>
         </div>
       </div>
     </>
