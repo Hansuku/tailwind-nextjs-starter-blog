@@ -30,6 +30,8 @@ export default function Footer() {
             <Image
               src="https://cdn.hansuku.com/beian.png"
               alt="police-ico"
+              width="15"
+              height="15"
               className="inline-block"
             ></Image>
             浙公网安备 33011802001277号
