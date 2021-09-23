@@ -1,6 +1,7 @@
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import Image from '@/components/Image'
 
 export default function Footer() {
   return (
@@ -26,7 +27,11 @@ export default function Footer() {
         </div>
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
           <Link href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011802001277">
-            <img src="https://cdn.hansuku.com/beian.png" className="inline-block" />
+            <Image
+              src="https://cdn.hansuku.com/beian.png"
+              alt="police-ico"
+              className="inline-block"
+            ></Image>
             浙公网安备 33011802001277号
           </Link>
         </div>
