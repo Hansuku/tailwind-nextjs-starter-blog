@@ -1,8 +1,8 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-// const QiniuPlugin = require('qiniu-webpack5-plugin')
-const QiniuPlugin = require('../qiniu-webpack5-plugin')
+const QiniuPlugin = require('qiniu-webpack5-plugin')
+// const QiniuPlugin = require('../qiniu-webpack5-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = withBundleAnalyzer({
