@@ -55,7 +55,7 @@
     "lint-staged": "^11.0.0",
     "next-remote-watch": "^1.0.0",
     "prettier": "2.2.1",
-    "qiniu-webpack-plugin": "^0.4.2"
+    "qiniu-webpack5-plugin": "0.0.1"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
