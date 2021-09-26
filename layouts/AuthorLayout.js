@@ -50,7 +50,7 @@ export default function AuthorLayout({ children, frontMatter }) {
           </div>
           <div className="pt-8 pb-3 prose dark:prose-dark max-w-none xl:col-span-2">{children}</div>
           <div className="w-full">
-            <Image src={isDark ? tagWhite : tagBlack} width="720" height="650" alt="tag" />
+            <Image src={isDark ? tagWhite : tagBlack} width="1024" height="900" alt="tag" />
           </div>
         </div>
       </div>
