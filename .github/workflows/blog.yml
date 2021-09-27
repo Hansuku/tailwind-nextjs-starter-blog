@@ -35,7 +35,8 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: "-avz --delete"
-          SOURCE: ""
+          SOURCE: ".next/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: 22
           TARGET: ${{ secrets.TARGET }}
