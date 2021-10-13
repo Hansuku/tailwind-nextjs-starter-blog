@@ -15,6 +15,7 @@ jobs:
           touch ~/.ssh/id_rsa
           cat > ~/.ssh/id_rsa << EOF
             ${{ secrets.REMOTE_HOST }}
+            123456
             EOF
           cat ~/.ssh/id_rsa
       # - name: Checkout
