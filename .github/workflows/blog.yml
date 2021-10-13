@@ -11,7 +11,7 @@ jobs:
       # use ssh login server
       - name: ssh login
         run: |
-          mkfir ~/.ssh
+          mkdir ~/.ssh
           touch ~/.ssh/id_rsa
           cat > ~/.ssh/id_rsa << EOF
             ${{ secrets.REMOTE_HOST }}
