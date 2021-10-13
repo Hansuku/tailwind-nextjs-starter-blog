@@ -40,3 +40,4 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: 22
           TARGET: ${{ secrets.TARGET }}
+          DEPLOY_KEY_NAME: "id_rsa"
