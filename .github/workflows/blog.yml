@@ -14,10 +14,11 @@ jobs:
           mkdir ~/.ssh
           touch ~/.ssh/id_rsa
           cat > ~/.ssh/id_rsa << EOF
-          ${{ secrets.ACCESS_TOKEN }}
+          ${{secrets.ACCESS_TOKEN}}
           EOF
           touch ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa -o UserKnownHostsFile=~/.ssh/known_hosts -tt ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "pwd"
+          ssh-keyscan -H ${{secrets.REMOTE_HOST}} > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_rsa -o UserKnownHostsFile=~/.ssh/known_hosts -tt ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "pwd"
           pwd
           exit
       # - name: Checkout
