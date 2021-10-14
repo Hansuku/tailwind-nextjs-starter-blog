@@ -16,8 +16,10 @@ jobs:
           cat > ~/.ssh/id_rsa << EOF
             ${{ secrets.REMOTE_HOST }}
           EOF
-          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
+          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << remotessh
           pwd
+          exit
+          remotessh
       # - name: Checkout
       #   uses: actions/checkout@master
       # # 使用 node:10
