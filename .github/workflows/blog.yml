@@ -16,6 +16,7 @@ jobs:
           cat > ~/.ssh/id_rsa << EOF
           ${{ secrets.ACCESS_TOKEN }}
           EOF
+          touch ~/.ssh/known_hosts
           ssh-keygen -R ${{ secrets.REMOTE_HOST }}
           ssh -t -t ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
           pwd
