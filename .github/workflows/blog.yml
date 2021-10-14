@@ -11,17 +11,13 @@ jobs:
       # use ssh login server
       - name: ssh login
         run: |
-          mkdir ~/.ssh
-          touch ~/.ssh/id_rsa
-          cat > ~/.ssh/id_rsa << EOF
-          ${{secrets.ACCESS_TOKEN}}
-          EOF
-          chmod 400 ~/.ssh/id_rsa
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -H ${{secrets.REMOTE_HOST}} > ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_rsa -o UserKnownHostsFile=~/.ssh/known_hosts -tt ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "pwd"
-          pwd
-          exit
+          eval $(ssh-agent -s)
+          echo "${{secrets.ACCESS_TOKEN}}" > deploy.key
+          mkdir -p ~/.ssh
+          chmod 0600 deploy.key
+          ssh-add deploy.key
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          ssh ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "pwd"
       # - name: Checkout
       #   uses: actions/checkout@master
       # # 使用 node:10
