@@ -17,7 +17,7 @@ jobs:
           chmod 0600 deploy.key
           ssh-add deploy.key
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          ssh ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "cd ${{secrets.TARGET}};git pull origin master;npm run build;pm2 restart blog;exit;"
+          ssh ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} "cd ${{secrets.TARGET}};git pull origin master;rm -rf node_modules;npm i;npm run build;pm2 restart blog;exit;"
       # - name: Checkout
       #   uses: actions/checkout@master
       # # 使用 node:10
