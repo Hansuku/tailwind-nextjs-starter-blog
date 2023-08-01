@@ -33,13 +33,14 @@ const genFrontMatter = (answers) => {
   const authorArray = answers.authors.length > 0 ? "'" + answers.authors.join("','") + "'" : ''
 
   let frontMatter = dedent`---
-  title: ${answers.title ? answers.title : 'Untitled'}
+  title: "${answers.title ? answers.title : 'Untitled'}"
   date: '${date}'
   tags: [${answers.tags ? tags : ''}]
   draft: ${answers.draft === 'yes' ? true : false}
-  summary: ${answers.summary ? answers.summary : ' '}
+  summary: "${answers.summary ? answers.summary : ' '}"
   images: []
   layout: ${answers.layout}
+  canonicalUrl: ${answers.canonicalUrl}
   `
 
   if (answers.authors.length > 0) {
@@ -92,6 +93,11 @@ inquirer
       type: 'list',
       choices: getLayouts,
     },
+    {
+      name: 'canonicalUrl',
+      message: 'Enter canonical url:',
+      type: 'input',
+    },
   ])
   .then((answers) => {
     // Remove special characters and replace space with -
@@ -101,6 +107,7 @@ inquirer
       .replace(/ /g, '-')
       .replace(/-+/g, '-')
     const frontMatter = genFrontMatter(answers)
+    if (!fs.existsSync('data/blog')) fs.mkdirSync('data/blog', { recursive: true })
     const filePath = `data/blog/${fileName ? fileName : 'untitled'}.${
       answers.extension ? answers.extension : 'md'
     }`
