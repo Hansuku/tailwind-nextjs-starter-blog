@@ -1,7 +1,6 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const QiniuPlugin = require('qiniu-webpack5-plugin')
 // const QiniuPlugin = require('../qiniu-webpack5-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -61,7 +60,7 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
-  assetPrefix: isProd ? 'https://cdn.hansuku.com/' : '',
+  // assetPrefix: '',
   experimental: { esmExternals: true },
   async headers() {
     return [
@@ -86,15 +85,15 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       })
     }
-    if (isProd) {
-      config.plugins.push(
-        new QiniuPlugin({
-          exclude: /.*\.json$/,
-          gzip: false,
-          includeDir: ['static/'],
-        })
-      )
-    }
+    // if (isProd) {
+    //   config.plugins.push(
+    //     new QiniuPlugin({
+    //       exclude: /.*\.json$/,
+    //       gzip: false,
+    //       includeDir: ['static/'],
+    //     })
+    //   )
+    // }
     return config
   },
   images: {
