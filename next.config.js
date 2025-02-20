@@ -1,14 +1,13 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-// const QiniuPlugin = require('../qiniu-webpack5-plugin')
-const isProd = process.env.NODE_ENV === 'production'
+const QiniuPlugin = require('qiniu-webpack5-plugin')
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app;
-  style-src 'self' 'unsafe-inline';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *.hansuku.com;
+  style-src 'self' 'unsafe-inline' *.hansuku.com;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
@@ -54,6 +53,7 @@ const securityHeaders = [
   },
 ]
 
+const isProd = process.env.NODE_ENV === 'production'
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
@@ -61,6 +61,7 @@ module.exports = withBundleAnalyzer({
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
   // assetPrefix: '',
+  assetPrefix: isProd ? 'https://cdn.hansuku.com/' : '',
   experimental: { esmExternals: true },
   async headers() {
     return [
@@ -85,15 +86,15 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       })
     }
-    // if (isProd) {
-    //   config.plugins.push(
-    //     new QiniuPlugin({
-    //       exclude: /.*\.json$/,
-    //       gzip: false,
-    //       includeDir: ['static/'],
-    //     })
-    //   )
-    // }
+    if (isProd) {
+      config.plugins.push(
+        new QiniuPlugin({
+          exclude: /.*\.json$/,
+          gzip: false,
+          includeDir: ['static/'],
+        })
+      )
+    }
     return config
   },
   images: {
