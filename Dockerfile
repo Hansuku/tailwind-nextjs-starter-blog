@@ -11,7 +11,7 @@ FROM node:18.17.0-alpine3.18 AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN yarn build && yarn install --registry https://registry.npmmirror.com/ --production
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:18.17.0-alpine3.18 AS runner
