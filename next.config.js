@@ -1,7 +1,7 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const QiniuPlugin = require('qiniu-webpack5-plugin')
+// const QiniuPlugin = require('qiniu-webpack5-plugin')
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
@@ -86,15 +86,15 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       })
     }
-    if (isProd) {
-      config.plugins.push(
-        new QiniuPlugin({
-          exclude: /.*\.json$/,
-          gzip: false,
-          includeDir: ['static/'],
-        })
-      )
-    }
+    // if (isProd) {
+    //   config.plugins.push(
+    //     new QiniuPlugin({
+    //       exclude: /.*\.json$/,
+    //       gzip: false,
+    //       includeDir: ['static/'],
+    //     })
+    //   )
+    // }
     return config
   },
   images: {
