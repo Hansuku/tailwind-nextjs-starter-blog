@@ -7,12 +7,12 @@ const UtterancesComponent = dynamic(
   },
   { ssr: false }
 )
-const GiscusComponent = dynamic(
-  () => {
-    return import('@/components/comments/Giscus')
-  },
-  { ssr: false }
-)
+// const GiscusComponent = dynamic(
+//   () => {
+//     return import('@/components/comments/Giscus')
+//   },
+//   { ssr: false }
+// )
 const DisqusComponent = dynamic(
   () => {
     return import('@/components/comments/Disqus')
@@ -25,13 +25,13 @@ const Comments = ({ frontMatter }) => {
   if (!comment || Object.keys(comment).length === 0) return <></>
   return (
     <div id="comment">
-      {siteMetadata.comment && siteMetadata.comment.provider === 'giscus' && <GiscusComponent />}
-      {siteMetadata.comment && siteMetadata.comment.provider === 'utterances' && (
+      {/* {siteMetadata.comment && siteMetadata.comment.provider === 'giscus' && <GiscusComponent />} */}
+      {/* {siteMetadata.comment && siteMetadata.comment.provider === 'utterances' && (
         <UtterancesComponent />
       )}
       {siteMetadata.comment && siteMetadata.comment.provider === 'disqus' && (
         <DisqusComponent frontMatter={frontMatter} />
-      )}
+      )} */}
     </div>
   )
 }
