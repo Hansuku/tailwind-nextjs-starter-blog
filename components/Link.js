@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-has-content @next/next/no-html-link-for-pages */
 import Link from 'next/link'
 
 const CustomLink = ({ href, ...rest }) => {
@@ -7,7 +7,7 @@ const CustomLink = ({ href, ...rest }) => {
 
   if (isInternalLink) {
     return (
-      <Link href={href}>
+      <Link href={href} legacyBehavior>
         <a {...rest} />
       </Link>
     )

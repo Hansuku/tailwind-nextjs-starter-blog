@@ -1,13 +1,13 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-// const QiniuPlugin = require('qiniu-webpack5-plugin')
+const QiniuPlugin = require('qiniu-webpack5-plugin')
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app *hansuku..com *;
-  style-src 'self' 'unsafe-inline' *.hansuku.com *;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.hansuku.com;
+  style-src 'self' 'unsafe-inline' *.hansuku.com;
   img-src * blob: data:;
   media-src  *;
   connect-src *;
@@ -86,15 +86,15 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       })
     }
-    // if (isProd) {
-    //   config.plugins.push(
-    //     new QiniuPlugin({
-    //       exclude: /.*\.json$/,
-    //       gzip: false,
-    //       includeDir: ['static/'],
-    //     })
-    //   )
-    // }
+    if (isProd) {
+      config.plugins.push(
+        new QiniuPlugin({
+          exclude: /.*\.json$/,
+          gzip: false,
+          includeDir: ['static/'],
+        })
+      )
+    }
     return config
   },
   images: {
