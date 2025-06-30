@@ -1,5 +1,5 @@
 const siteMetadata = {
-  title: 'Hansuku’s Blog',
+  title: 'Hansuku\'s Blog',
   author: 'Hansuku',
   headerTitle: 'Hansuku',
   description: '岁月你别催，该来的我不推。',
@@ -37,7 +37,7 @@ const siteMetadata = {
     // content security policy in the `next.config.js` file.
     // Select a provider and use the environment variables associated to it
     // https://vercel.com/docs/environment-variables
-    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    provider: '', // 暂时禁用评论系统
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
