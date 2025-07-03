@@ -7,6 +7,13 @@ module.exports = {
     es6: true,
     es2022: true,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   plugins: ['react'],
   rules: {

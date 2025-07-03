@@ -4,7 +4,7 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat vips-dev build-base python3 make g++
 WORKDIR /app
 COPY package.json ./
-RUN yarn install --frozen-lockfile  --registry https://registry.npmmirror.com/
+RUN rm -f yarn.lock && yarn install --registry https://registry.npmmirror.com/
 
 # Rebuild the source code only when needed
 FROM node:20-alpine AS builder
