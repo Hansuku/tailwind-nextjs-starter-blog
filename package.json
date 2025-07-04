@@ -50,7 +50,10 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "15.1.4",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "eslint-import-resolver-alias": "^1.1.2",
     "globby": "11.0.3",
     "husky": "^6.0.0",
     "inquirer": "^8.1.1",
@@ -58,9 +61,9 @@
     "next-remote-watch": "^1.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
+    "qiniu-webpack5-plugin": "0.0.5",
     "socket.io": "^4.4.0",
-    "socket.io-client": "^4.4.0",
-    "qiniu-webpack5-plugin": "0.0.5"
+    "socket.io-client": "^4.4.0"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [

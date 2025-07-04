@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content @next/next/no-html-link-for-pages */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import Link from 'next/link'
 
 const CustomLink = ({ href, ...rest }) => {
