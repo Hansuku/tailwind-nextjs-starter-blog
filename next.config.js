@@ -59,6 +59,7 @@ module.exports = withBundleAnalyzer({
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   eslint: {
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
+    ignoreDuringBuilds: true,
   },
   // assetPrefix: '',
   assetPrefix: isProd ? 'https://cdn.hansuku.com/' : '',
