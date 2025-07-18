@@ -1,0 +1,6 @@
+{
+  "permissions": {
+    "allow": ["Bash(git add:*)", "Bash(git commit:*)", "Bash(git stash:*)", "Bash(npm run lint)"],
+    "deny": []
+  }
+}

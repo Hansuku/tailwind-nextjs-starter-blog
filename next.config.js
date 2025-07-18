@@ -64,15 +64,12 @@ module.exports = withBundleAnalyzer({
   // assetPrefix: '',
   assetPrefix: isProd ? 'https://cdn.hansuku.com/' : '',
   experimental: { esmExternals: true },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: securityHeaders,
-      },
-    ]
-  },
   webpack: (config, { dev, isServer }) => {
+    // Disable webpack cache to prevent serialization issues
+    if (!dev) {
+      config.cache = false
+    }
+
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
@@ -97,6 +94,14 @@ module.exports = withBundleAnalyzer({
       )
     }
     return config
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ]
   },
   images: {
     domains: ['cdn.hansuku.com'],

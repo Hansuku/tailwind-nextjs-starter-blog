@@ -11,6 +11,10 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+# Clean build cache and disable webpack persistent cache
+RUN rm -rf .next
+ENV NODE_ENV=production
+ENV NEXT_WEBPACK_USEPOLLING=1
 RUN yarn build
 
 # Production image, copy all the files and run next
