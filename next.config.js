@@ -84,15 +84,16 @@ module.exports = withBundleAnalyzer({
         'react-dom': 'preact/compat',
       })
     }
-    if (isProd) {
-      config.plugins.push(
-        new QiniuPlugin({
-          exclude: /.*\.json$/,
-          gzip: false,
-          includeDir: ['static/'],
-        })
-      )
-    }
+    // Temporarily disable Qiniu plugin to isolate build issue
+    // if (isProd) {
+    //   config.plugins.push(
+    //     new QiniuPlugin({
+    //       exclude: /.*\.json$/,
+    //       gzip: false,
+    //       includeDir: ['static/'],
+    //     })
+    //   )
+    // }
     return config
   },
   async headers() {
