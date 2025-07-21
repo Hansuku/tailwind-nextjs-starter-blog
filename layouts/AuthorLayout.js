@@ -5,20 +5,20 @@ import { useTheme } from 'next-themes'
 
 export default function AuthorLayout({ children, frontMatter }) {
   const {
-    name,
-    avatar,
-    occupation,
+    name = '',
+    avatar = '',
+    occupation = '',
     company,
     tagWhite,
     tagBlack,
-    email,
+    email = '',
     twitter,
     linkedin,
-    github,
-  } = frontMatter
-  const { theme, resolvedTheme } = useTheme()
+    github = '',
+  } = frontMatter || {}
+  const { theme, resolvedTheme } = useTheme() || {}
 
-  const isDark = theme === 'dark' || resolvedTheme === 'dark'
+  const isDark = theme === 'dark' || resolvedTheme === 'dark' || false
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function AuthorLayout({ children, frontMatter }) {
             />
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
             <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
-            <div className="text-gray-500 dark:text-gray-400">{company}</div>
+            {company && <div className="text-gray-500 dark:text-gray-400">{company}</div>}
             {/* <div className="flex pt-6 space-x-3">
               <SocialIcon kind="mail" href={`mailto:${email}`} />
               <SocialIcon kind="github" href={github} />
@@ -51,7 +51,9 @@ export default function AuthorLayout({ children, frontMatter }) {
           <div className="prose max-w-none pb-3 pt-8 dark:prose-dark xl:col-span-2">{children}</div>
         </div>
         <div className="w-full">
-          <Image src={isDark ? tagWhite : tagBlack} width="1024" height="900" alt="tag" />
+          {tagWhite && tagBlack && (
+            <Image src={isDark ? tagWhite : tagBlack} width="1024" height="900" alt="tag" />
+          )}
         </div>
       </div>
     </>
