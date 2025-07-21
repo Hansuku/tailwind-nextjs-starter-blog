@@ -5,20 +5,17 @@ import { useTheme } from 'next-themes'
 
 export default function AuthorLayout({ children, frontMatter }) {
   const {
-    name = '',
-    avatar = '',
+    name = 'Author',
+    avatar = '/static/images/avatar.png',
     occupation = '',
     company,
-    tagWhite,
-    tagBlack,
+    tagWhite = '/static/images/tag-white.png',
+    tagBlack = '/static/images/tag-black.png',
     email = '',
     twitter,
     linkedin,
     github = '',
   } = frontMatter || {}
-  const { theme, resolvedTheme } = useTheme() || {}
-
-  const isDark = theme === 'dark' || resolvedTheme === 'dark' || false
 
   return (
     <>
@@ -39,21 +36,12 @@ export default function AuthorLayout({ children, frontMatter }) {
               className="h-48 w-48 rounded-full"
             />
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
-            <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
+            {occupation && <div className="text-gray-500 dark:text-gray-400">{occupation}</div>}
             {company && <div className="text-gray-500 dark:text-gray-400">{company}</div>}
-            {/* <div className="flex pt-6 space-x-3">
-              <SocialIcon kind="mail" href={`mailto:${email}`} />
-              <SocialIcon kind="github" href={github} />
-              <SocialIcon kind="linkedin" href={linkedin} />
-              <SocialIcon kind="twitter" href={twitter} />
-            </div> */}
+            <div className="prose max-w-none pb-3 pt-8 dark:prose-dark xl:col-span-2">
+              {children}
+            </div>
           </div>
-          <div className="prose max-w-none pb-3 pt-8 dark:prose-dark xl:col-span-2">{children}</div>
-        </div>
-        <div className="w-full">
-          {tagWhite && tagBlack && (
-            <Image src={isDark ? tagWhite : tagBlack} width="1024" height="900" alt="tag" />
-          )}
         </div>
       </div>
     </>
